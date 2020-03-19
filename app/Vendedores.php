@@ -10,4 +10,10 @@ class Vendedores extends Model
     'nome'];
 protected $table = 'Vendedores';
 
+
+public function vendasVendedores(){
+
+    return $this->hasMany(Vendas::class, 'vendedor_id');
+}
+
 }

@@ -11,5 +11,10 @@ class Produtos extends Model
     'descricao',
     'preco'];
     protected $table = 'Produtos';
+    
+    public function produtosPedido(){
 
+        return $this->hasMany(ProdutosVenda::class, 'produto_id');
+    }
+  
 }
