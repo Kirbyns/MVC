@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriaTabelaProdutos extends Migration
+class CriaForeignKeyVendedorId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CriaTabelaProdutos extends Migration
      */
     public function up()
     {
-        Schema::create('produtos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nome');
-            $table->text('decricao');
-            $table->double('preco',10, 2);
-            $table->timestamps();
-           
+        Schema::table('Vendas', function (Blueprint $table) {
+
+            $table->foreign('vendedor_id')->references('id')
+              ->on('Vendedores')->onDelete('cascade');
+  
         });
     }
 
@@ -30,6 +28,8 @@ class CriaTabelaProdutos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produtos');
+        Schema::table('Vendas', function (Blueprint $table) {
+            //
+        });
     }
 }
